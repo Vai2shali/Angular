@@ -1,0 +1,45 @@
+     
+    <h4>Reactive Crud</h4>
+    <div class="container">
+     <form [formGroup]="myForm" (ngSubmit)="onSubmitData(myForm)">
+        <div class="form-group">
+            <label for="username">UserName:</label>
+            <input type="text" name="uname" class="form-control" formControlName="uname">
+       
+
+        <label for="email">Email:</label>
+        <input type="email" name="eml" class="form-control" formControlName="eml">
+
+        <label for="password">password:</label>
+        <input type="text"  name=pass class="form-control" formControlName="pass">
+         </div>
+         <button class="btn btn-info">Submit</button>&nbsp;
+         <button type="button" class="btn btn-primary" (click)="onClickUpdateBtn(myForm)">Updata</button>
+
+    </form>
+    </div>
+    <div >
+        <table class="table table-responsive">
+            <tr *ngIf="showTable">
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Action</th>
+                <th>Action</th>
+
+            </tr>
+            <tr *ngFor="let data of allData">
+                <td>{{data.uname}}</td>
+                <td>{{data.eml}}</td>
+                <td>{{data.pass}}</td>
+                
+                <td>
+                    <button class="btn btn-success" (click)="onDelBtn(data)">Delete</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="onUpdateBtn(data)">Update</button>
+                </td>
+
+            </tr>
+        </table>
+    </div>

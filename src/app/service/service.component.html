@@ -1,0 +1,54 @@
+ <h4>Local Api crud</h4>
+ <div class="container">
+    <form name="myForm" #frm="ngForm" (ngSubmit)="onSubmitData(frm)">
+        <input type="hidden" name="id" #id="ngModel" ngModel [(ngModel)]="idd">
+        <div class="from-group">
+            <label for="fistname">FirstName:</label>
+            <input type="text" name="fname" class="form-control" #fname="ngModel" ngModel
+            [(ngModel)]="fn">
+
+            <label for="lastname">LastName:</label>
+            <input type="text" name="lname" class="form-control" #lname="ngModel" ngModel
+            [(ngModel)]="ln">
+        </div>
+        <label for="email">Email:</label>
+            <input type="emial" name="eml" class="form-control" #eml="ngModel" ngModel
+            [(ngModel)]="em">
+
+            <label for="password">Password:</label>
+            <input type="password" name="pass" class="form-control" #pass="ngModel" ngModel
+            [(ngModel)]="ps">
+
+            <button type="submit"  class="btn btn-success">submit</button>
+            <button type="button" class="btn btn-info" (click)="onClickUpdateBtn(frm)">Updata</button>
+
+    </form>
+ </div>
+ <div>
+    <table class="table table-primary">
+        <tr   >
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Action</th>
+            <th>Action</th>
+
+
+        </tr>
+        <tr *ngFor="let data of allData">
+            <td>{{data.fname}}</td>
+            <td>{{data.lname}}</td>
+            <td>{{data.eml}}</td>
+            <td>{{data.pass}}</td>
+                 
+           <td>
+                <button class="btn btn-info"(click)="onDeldata(data)">Delete</button>
+            </td>
+            <td>
+                <button class="btn btn-info"(click)="onUpdatadata(data)">Updata</button>
+            </td>
+  </tr>
+  
+     </table>
+ </div>

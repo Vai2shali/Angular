@@ -1,0 +1,28 @@
+ <h5>Directives</h5>
+ <!-- Structural directives -->
+ <!--*ngIf-->
+ <p *ngIf="(showFlag&& age>18 )">{{showText}}</p>
+ <!--*ngFor-->
+ <select class="form-control" [(ngModel)]="onselectedCountry">
+    <option *ngFor="let cnt of country">{{cnt}}</option>
+ </select>
+ <!--*ngSwitch-->
+ <div [ngSwitch]="state">
+    <div *ngSwitchCase="'MH'">Maharashtra</div>
+    <div *ngSwitchCase="'KA'">Karnatak</div>
+ </div>
+ <div [ngSwitch]="state">
+    <div *ngSwitchCase="'MH'">MAHARASHTRA</div>
+    <div *ngSwitchDefault>This default case</div>
+ </div>
+ <!-- Attribute directives -->
+ <!--ngClass-->
+ <p class="testClass">This is p tag</p>
+ <p [ngClass]="testClass1">This is angular</p>
+ <p [ngClass]="(!showFlag&& age> 0)?'test1':'test2'">The Angular json</p>
+ <!--ngStyle-->
+ <p style="color:red">This is the ngstyle</p>
+ <p [ngStyle]="{'color':'blue'}">This is the ng normal</p>
+ <p [ngStyle]="showFlag?testStyle2:testStyle3">This is ternory operator</p>
+
+ <p ngStyle="" 

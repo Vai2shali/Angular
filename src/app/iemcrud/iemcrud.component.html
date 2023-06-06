@@ -1,0 +1,76 @@
+ <h4>Template Crud</h4>
+ <h4>Template Crud From </h4>
+ <div class="container">
+    <form name="myForm" #frm="ngForm"  (ngSubmit)=" frm.valid&& onSubmitData(frm)">
+        <input type="hidden" name="id" #id="ngModel" ngModel [(ngModel)]="idd">
+        <div class="form-group">
+            <label for="firstname">FirstName:</label><span style="color: red;">*</span>
+            <input type="text" name="fname" class="form-control" #fname="ngModel" ngModel
+           [(ngModel)]="fn"
+           required [ngClass]="{'is-invalid':frm.submitted && fname.invalid}">
+           <div *ngIf="fname.touched" class="invalid-feedback">
+            First name is required
+           </div>
+            </div>
+
+            <div class="form-group">
+
+                <label for="lastname">LastName:</label><span style="color: red;" >*</span>
+                <input type="text" name="lname" class="form-control" #lname="ngModel" ngModel
+                [(ngModel)]="ln"
+                required [ngClass]="{'is-invalid':frm.submitted && lname.invalid}">
+                <div *ngIf="lname.touched" class="invalid-feedback">
+                    Last name is required
+                   </div>
+                
+                
+            </div>
+            <div class="form-group">
+            <label for="email">Email:</label> <span style="color: red;">*</span>
+            <input type="email" name="eml" class="form-control" #eml="ngModel" ngModel
+            [(ngModel)]="em"
+            required [ngClass]="{'is-invalid':frm.submitted && eml.invalid}"
+            pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$">
+            <div *ngIf="eml.touched" class="invalid-feedback">
+                <div *ngIf="eml.errors?.['required']">This field is required</div>
+                <div *ngIf="eml.errors?.['pattern']">Please enter your email</div>
+            </div>
+               
+             
+        </div>
+            
+         <button class="btn btn-secondary">Submit</button>&nbsp;
+        <button  class="btn btn-danger" (click)="onClickUpdateBtn(frm)">Update</button>
+
+    </form>
+ </div>
+ <div>
+    <table class="table table-responsive">
+        <tr *ngIf="showTable">
+             <th>FirstName</th>
+             <th>LastName</th>
+             <th>Email</th> 
+             <th>Action</th>
+             <th>Action</th>         
+            
+              
+        </tr>
+        <tr *ngFor="let data of allData">
+            <td>{{data.fname}}</td>
+            <td>{{data.lname}}</td>
+            <td>{{data.eml}}</td>
+            <td>
+                <button class="btn btn-success" (click)="onDelData(data)">Delete</button>
+            </td>
+
+            <td>
+                <button class="btn btn-info" (click)="onUpdateData(data)">Update</button>
+            </td>
+
+
+
+
+        </tr>
+    </table>
+
+  </div>

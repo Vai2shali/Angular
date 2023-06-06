@@ -1,0 +1,59 @@
+<h2>Crud Component</h2>
+<div class="container">
+    
+    <form name="myForm" #frm="ngForm" (ngSubmit)="frm.valid && onSubmitData(frm)">
+        <input type="hidden" name="id" #id="ngModel" ngModel [(ngModel)]="idd">
+      <div class="form-group" >
+        <label for="username">UserName:</label><span style="color: red;">*</span>
+        <input type="text" name="uname" class="form-control" #uname="ngModel"ngModel
+        [(ngModel)]="un"
+        required [ngClass]="{'is-invalid':frm.submitted&&uname.invalid}">
+        <div *ngIf="frm.submitted && uname.invalid" class="invalid-feedback">
+            This field is required
+        </div>
+
+        <label for="email">email:</label><span style="color: red;">*</span>
+        <input type="email" name="eml" class="form-control" #eml="ngModel"ngModel
+        [(ngModel)]="el"
+        required [ngClass]="{'is-invalid':frm.submitted && eml.invalid}"
+        pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" >
+       <div *ngIf="eml.touched" class="invalid-feedback">
+       <div *ngIf="eml.errors?.['required']">This field is required</div>
+       <div *ngIf="eml.errors?.['pattern']">Please enter your email</div>
+    </div> 
+        <label for="password">Password:</label>
+        <input type="password" name="pass" class="form-control" #pass="ngModel"ngModel
+        [(ngModel)]="ps">
+        <button class="btn btn-success">Submit</button>&nbsp; &nbsp;
+        <button class="btn btn-info" (click)="(frm)">Update</button>
+        
+
+      </div> 
+    </form>
+</div>
+ 
+<!--show all form data to user-->
+<div >
+    <table class="table table-responsive">
+        <tr *ngIf="allData?.length>0" >
+            <th>UserName</th>
+            <th>Email</th>
+            <th> Password</th>
+            <th>Action</th>
+            <th>Action</th>
+
+        </tr>
+        <tr *ngFor="let data of allData">
+            <td>{{data.uname}}</td>
+            <td>{{data.eml}}</td>
+            <td>{{data.pass}}</td>
+       
+        <td>
+            <button class="btn btn-warning" (click)="onDelData(data)">Delete</button></td>
+        
+        <td>
+            <button class="btn btn-success" (click)="onUpdate(data)">UpdateData</button></td>
+        </tr> 
+    </table>
+</div>
+ 
